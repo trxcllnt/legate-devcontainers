@@ -1,0 +1,39 @@
+x-git-defaults: &git_defaults
+    host: github
+    tag: branch-23.09
+    upstream: nv-legate
+
+repos:
+- name: legion
+  path: legion
+  cpp:
+    - name: Legion
+      sub_dir: ""
+      depends: []
+  git:
+    repo: legion
+    host: gitlab
+    upstream: StanfordLegion
+    # tag: control_replication
+    tag: "drop-find-cuda+control_replication"
+
+- name: legate
+  path: legate
+  cpp:
+    - name: legate_core
+      sub_dir: ""
+      depends: [Legion]
+  git:
+    repo: legate.core
+    <<: *git_defaults
+    tag: "fea/legion-with-cmake-cuda-language"
+
+- name: cunumeric
+  path: cunumeric
+  cpp:
+    - name: cunumeric
+      sub_dir: ""
+      depends: [legate_core]
+  git:
+    repo: cunumeric
+    <<: *git_defaults
