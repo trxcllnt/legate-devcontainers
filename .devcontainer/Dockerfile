@@ -1,15 +1,15 @@
 # syntax=docker/dockerfile:1.5
 
-ARG PIP_BASE
-ARG CONDA_BASE
-
+ARG BASE
 ARG PYTHON_PACKAGE_MANAGER=conda
 
-FROM ${PIP_BASE} as pip-base
+FROM ${BASE} as pip-base
 
-FROM ${CONDA_BASE} as conda-base
+ENV DEFAULT_VIRTUAL_ENV=legate
 
-COPY --from=pip-base /etc/skel/.config/clangd/config.yaml /etc/skel/.config/clangd/config.yaml
+FROM ${BASE} as conda-base
+
+ENV DEFAULT_CONDA_ENV=legate
 
 FROM ${PYTHON_PACKAGE_MANAGER}-base
 
@@ -28,3 +28,5 @@ ENV SCCACHE_REGION="us-east-2"
 ENV SCCACHE_BUCKET="rapids-sccache-devs"
 ENV VAULT_HOST="https://vault.ops.k8s.rapids.ai"
 ENV HISTFILE="/home/coder/.cache/._bash_history"
+
+ENV PROJECT_MANIFEST_YML="/home/coder/devcontainers/.devcontainer/manifest.yaml"
