@@ -14,19 +14,22 @@ repos:
     repo: legion
     host: gitlab
     upstream: StanfordLegion
-    # tag: control_replication
-    tag: "drop-find-cuda+control_replication"
+    tag: control_replication
 
-- name: legate
+- name: legate.core
   path: legate
   cpp:
     - name: legate_core
       sub_dir: ""
       depends: [Legion]
+  python:
+    - name: legate-core
+      sub_dir: ""
+      depends: []
   git:
     repo: legate.core
     <<: *git_defaults
-    tag: "fea/legion-with-cmake-cuda-language"
+    tag: "fix/legion-cmake-cuda-update"
 
 - name: cunumeric
   path: cunumeric
@@ -34,6 +37,20 @@ repos:
     - name: cunumeric
       sub_dir: ""
       depends: [legate_core]
+  python:
+    - name: cunumeric
+      sub_dir: ""
+      depends: [legate-core]
   git:
     repo: cunumeric
+    <<: *git_defaults
+
+- name: legate.stl
+  path: legate.stl
+  cpp:
+    - name: legate_stl
+      sub_dir: ""
+      depends: [legate_core]
+  git:
+    repo: legate.stl
     <<: *git_defaults

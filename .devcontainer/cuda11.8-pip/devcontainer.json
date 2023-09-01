@@ -7,7 +7,7 @@
     "args": {
       "CUDA": "11.8",
       "PYTHON_PACKAGE_MANAGER": "pip",
-      "BASE": "rapidsai/devcontainers:23.10-cpp-llvm16-cuda11.8-ubuntu22.04"
+      "BASE": "rapidsai/devcontainers:23.10-cpp-rust-cuda11.8-ubuntu22.04"
     }
   },
   "hostRequirements": {
@@ -23,7 +23,7 @@
   ],
 
   "initializeCommand": [
-    "/bin/bash", "-c", "mkdir -m 0755 -p ${localWorkspaceFolder}/../.{aws,cache,config/pip,conda/pkgs} ${localWorkspaceFolder}/../.{conda,local}/${localWorkspaceFolderBasename} ${localWorkspaceFolder}/../{legion,legate,cunumeric}"
+    "/bin/bash", "-c", "mkdir -m 0755 -p ${localWorkspaceFolder}/../.{aws,cache,config/pip,local/share/${localWorkspaceFolderBasename}-cuda11.8-venvs} ${localWorkspaceFolder}/../{.local/state,legion,legate.core,cunumeric}"
   ],
 
   "updateContentCommand": [
@@ -47,7 +47,8 @@
     "source=${localWorkspaceFolder}/../.aws,target=/home/coder/.aws,type=bind,consistency=consistent",
     "source=${localWorkspaceFolder}/../.cache,target=/home/coder/.cache,type=bind,consistency=consistent",
     "source=${localWorkspaceFolder}/../.config,target=/home/coder/.config,type=bind,consistency=consistent",
-    "source=${localWorkspaceFolder}/../.local/${localWorkspaceFolderBasename},target=/home/coder/.local,type=bind,consistency=consistent"
+    "source=${localWorkspaceFolder}/../.local/state,target=/home/coder/.local/state,type=bind,consistency=consistent",
+    "source=${localWorkspaceFolder}/../.local/share/${localWorkspaceFolderBasename}-cuda11.8-venvs,target=/home/coder/.local/share/venvs,type=bind,consistency=consistent"
   ],
 
   "customizations": {

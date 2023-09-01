@@ -23,7 +23,7 @@
   ],
 
   "initializeCommand": [
-    "/bin/bash", "-c", "mkdir -m 0755 -p ${localWorkspaceFolder}/../.{aws,cache,config/pip,conda/pkgs} ${localWorkspaceFolder}/../.{conda,local}/${localWorkspaceFolderBasename} ${localWorkspaceFolder}/../{legion,legate,cunumeric}"
+    "/bin/bash", "-c", "mkdir -m 0755 -p ${localWorkspaceFolder}/../.{aws,cache,config/pip,conda/pkgs} ${localWorkspaceFolder}/../.{conda,local}/${localWorkspaceFolderBasename} ${localWorkspaceFolder}/../{.local/state,legion,legate.core,cunumeric}"
   ],
 
   "updateContentCommand": [
@@ -48,7 +48,8 @@
     "source=${localWorkspaceFolder}/../.cache,target=/home/coder/.cache,type=bind,consistency=consistent",
     "source=${localWorkspaceFolder}/../.config,target=/home/coder/.config,type=bind,consistency=consistent",
     "source=${localWorkspaceFolder}/../.conda/pkgs,target=/home/coder/.conda/pkgs,type=bind,consistency=consistent",
-    "source=${localWorkspaceFolder}/../.conda/${localWorkspaceFolderBasename},target=/home/coder/.conda/envs,type=bind,consistency=consistent"
+    "source=${localWorkspaceFolder}/../.conda/${localWorkspaceFolderBasename},target=/home/coder/.conda/envs,type=bind,consistency=consistent",
+    "source=${localWorkspaceFolder}/../.local/state,target=/home/coder/.local/state,type=bind,consistency=consistent"
   ],
 
   "customizations": {

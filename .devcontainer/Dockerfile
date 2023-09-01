@@ -5,6 +5,11 @@ ARG PYTHON_PACKAGE_MANAGER=conda
 
 FROM ${BASE} as pip-base
 
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt update -y \
+ && apt install -y libdw-dev \
+ && rm -rf /var/tmp/* /var/cache/apt/* /var/lib/apt/lists/*
+
 ENV DEFAULT_VIRTUAL_ENV=legate
 
 FROM ${BASE} as conda-base
